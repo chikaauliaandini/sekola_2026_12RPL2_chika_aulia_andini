@@ -47,7 +47,7 @@
     <h1>SELAMAT DATANG DI</h1>
     <p>WEbsite Pengaduan MUTU</p>
     <a href="form-pengaduan.php" class="btn">Buat Pengaduan</a>
-    <a href="logout-pengaduan.php" class="btn btn-logout">Logout</a>
+    <a href="logout-pengaduan.php" class="btn btn-logout">login</a>
     
 </div>
 

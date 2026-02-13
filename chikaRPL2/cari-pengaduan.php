@@ -1,85 +1,181 @@
 <?php
-// Koneksi ke database
-$host = "localhost";
-$db   = "ujikom_12rpl_chika";
-$user = "root";
-$pass = "";
+include 'koneksi.php';
 
-try {
-    $pdo = new PDO("mysql:host=$host;dbname=$db", $user, $pass);
-    $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-} catch(PDOException $e) {
-    die("Koneksi gagal: " . $e->getMessage());
-}
+$keyword = "";
+$hasil = [];
+$statusList = ["menunggu", "proses", "selesai"];
 
-// Ambil keyword pencarian
-$keyword = isset($_GET['keyword']) ? $_GET['keyword'] : "";
-?>
+if (isset($_GET['cari'])) {
+    $keyword = mysqli_real_escape_string($koneksi, $_GET['keyword']);
+    $sql = "SELECT * FROM input_aspirasi 
+            WHERE nis LIKE '%$keyword%' 
+               OR lokasi LIKE '%$keyword%'";
+    $query = mysqli_query($koneksi, $sql);
 
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Cari Pengaduan</title>
-    <style>
-        body { font-family: Arial; margin: 40px; }
-        table { border-collapse: collapse; width: 100%; margin-top: 20px; }
-        table, th, td { border: 1px solid #ccc; }
-        th, td { padding: 10px; text-align: left; }
-        th { background-color: #f2f2f2; }
-        .search-box { margin-bottom: 20px; }
-    </style>
-</head>
-<body>
-
-<h2>Pencarian Data Pengaduan</h2>
-
-<form method="GET" action="">
-    <div class="search-box">
-        <input type="text" name="keyword" placeholder="Masukkan kata kunci..." 
-               value="<?php echo htmlspecialchars($keyword); ?>">
-        <button type="submit">Cari</button>
-    </div>
-</form>
-
-<?php
-if ($keyword != "") {
-    $sql = "SELECT * FROM pengaduan 
-            WHERE nama LIKE :keyword 
-            OR judul LIKE :keyword 
-            OR isi LIKE :keyword
-            ORDER BY tanggal DESC";
-
-    $stmt = $pdo->prepare($sql);
-    $stmt->execute(['keyword' => "%$keyword%"]);
-
-    if ($stmt->rowCount() > 0) {
-        echo "<table>";
-        echo "<tr>
-                <th>No</th>
-                <th>Nama</th>
-                <th>Judul</th>
-                <th>Isi</th>
-                <th>Tanggal</th>
-                <th>Status</th>
-              </tr>";
-
-        $no = 1;
-        while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
-            echo "<tr>
-                    <td>".$no++."</td>
-                    <td>".htmlspecialchars($row['nama'])."</td>
-                    <td>".htmlspecialchars($row['nomor'])."</td>
-                    <td>".htmlspecialchars($row['isi'])."</td>
-                    <td>".htmlspecialchars($row['tanggal'])."</td>
-                    <td>".htmlspecialchars($row['status'])."</td>
-                  </tr>";
-        }
-        echo "</table>"; 
-    } else {
-        echo "<p>Data tidak ditemukan.</p>";
+    while ($row = mysqli_fetch_assoc($query)) {
+        $hasil[] = $row;
     }
 }
 ?>
+
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<title>Cari Pengaduan</title>
+
+<style>
+body {
+    font-family: 'Segoe UI', sans-serif;
+    background: linear-gradient(to right, #a1d3fc, #9899eb);
+    display: flex;
+    justify-content: center;
+    padding: 50px 0;
+    margin: 0;
+}
+
+.container {
+    background: #fff;
+    padding: 40px 30px;
+    border-radius: 15px;
+    box-shadow: 0 10px 25px rgba(0,0,0,.2);
+    width: 950px;
+}
+
+h2 { text-align:center; color:#2c3e50; }
+
+input[type=text] {
+    width:100%;
+    padding:10px;
+    margin-bottom:15px;
+    border-radius:8px;
+    border:1px solid #ccc;
+}
+
+button {
+    width:100%;
+    padding:12px;
+    border:none;
+    border-radius:8px;
+    background:#f39c12;
+    color:#fff;
+    font-size:16px;
+}
+
+table {
+    width:100%;
+    border-collapse:collapse;
+    margin-top:20px;
+}
+
+th, td {
+    border:1px solid #ccc;
+    padding:10px;
+    text-align:center;
+}
+
+th {
+    background:#3498db;
+    color:white;
+}
+
+.detail-btn {
+    background:#2ecc71;
+    color:white;
+    padding:6px 12px;
+    border-radius:6px;
+    text-decoration:none;
+}
+
+.status-select {
+    padding:6px;
+    border-radius:6px;
+}
+
+.back-btn {
+    display:block;
+    margin-top:25px;
+    text-align:center;
+    background:#95a5a6;
+    color:white;
+    padding:10px;
+    border-radius:8px;
+    text-decoration:none;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+<h2>Cari Pengaduan</h2>
+
+<form method="GET">
+    <input type="text" name="keyword" placeholder="Cari NIS atau Lokasi"
+           value="<?= htmlspecialchars($keyword); ?>" required>
+    <button type="submit" name="cari">Cari</button>
+</form>
+
+<?php if (isset($_GET['cari'])) { ?>
+<h3 style="margin-top:20px;">Hasil Pencarian</h3>
+
+<?php if ($hasil) { ?>
+<table>
+<tr>
+    <th>NO</th>
+    <th>TANGGAL</th>
+    <th>NIS</th>
+    <th>KETERANGAN</th>
+    <th>LOKASI</th>
+    <th>STATUS</th>
+    <th>AKSI</th>
+</tr>
+
+<?php $no=1; foreach ($hasil as $h) { ?>
+<tr>
+    <td><?= $no++; ?></td>
+
+    <!-- TANGGAL -->
+    <td><?= date('d-m-Y', strtotime($h['tanggal'])); ?></td>
+
+    <td><?= htmlspecialchars($h['nis']); ?></td>
+
+    <td>
+        <?= htmlspecialchars(
+            strlen($h['ket']) > 40
+            ? substr($h['ket'],0,40).'...'
+            : $h['ket']
+        ); ?>
+    </td>
+
+    <td><?= htmlspecialchars($h['lokasi']); ?></td>
+
+    <td>
+        <select class="status-select" disabled>
+            <?php foreach ($statusList as $s) { ?>
+                <option <?= ($h['status']==$s)?'selected':''; ?>>
+                    <?= ucfirst($s); ?>
+                </option>
+            <?php } ?>
+        </select>
+    </td>
+
+    <td>
+        <a class="detail-btn"
+           href="detail-pengaduan.php?id=<?= $h['id_pelaporan']; ?>">
+           Detail
+        </a>
+    </td>
+</tr>
+<?php } ?>
+
+</table>
+<?php } else { ?>
+<p style="color:red;text-align:center;">Data tidak ditemukan</p>
+<?php } } ?>
+
+<a href="index.php" class="back-btn">← Kembali</a>
+</div>
 
 </body>
 </html>

@@ -51,7 +51,7 @@
     <h2>Detail Pengaduan</h2>
 
     <p><label>Nama:</label> <?= $data['nama']; ?></p>
-    <p><label>Email:</label> <?= $data['email']; ?></p>
+
     <p><label>Judul:</label> <?= $data['judul']; ?></p>
     <p><label>Isi:</label><br><?= nl2br($data['isi']); ?></p>
     <p><label>Status:</label> <?= $data['status']; ?></p>

@@ -3,7 +3,7 @@ include 'koneksi.php';
 
 $keyword = "";
 $hasil = [];
-$statusList = ["menunggu", "proses", "selesai"];
+$statusList = ["Menunggu", "proses", "selesai"];
 
 if (isset($_GET['cari'])) {
     $keyword = mysqli_real_escape_string($koneksi, $_GET['keyword']);
@@ -27,7 +27,7 @@ if (isset($_GET['cari'])) {
 <style>
 body {
     font-family: 'Segoe UI', sans-serif;
-    background: linear-gradient(to right, #a1d3fc, #9899eb);
+    background: linear-gradient(to right, #E5CEF8, #F7F5FC);
     display: flex;
     justify-content: center;
     padding: 50px 0;
@@ -57,8 +57,8 @@ button {
     padding:12px;
     border:none;
     border-radius:8px;
-    background:#f39c12;
-    color:#fff;
+    background:#D8B6D9;
+    color:black;
     font-size:16px;
 }
 
@@ -69,13 +69,13 @@ table {
 }
 
 th, td {
-    border:1px solid #ccc;
+    border:1px solid #F7F5FC;
     padding:10px;
     text-align:center;
 }
 
 th {
-    background:#3498db;
+    background:#CCCBE1;
     color:white;
 }
 

@@ -12,7 +12,7 @@
 
 /* BODY */
 body {
-    background: linear-gradient(to right, #97b6cf, #9589d8);
+    background: linear-gradient(to right, #E5CEF8, #F1E8FA);
     min-height: 100vh;
     margin: 0;
     padding: 40px;

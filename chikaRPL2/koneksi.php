@@ -1,7 +1,14 @@
 <?php
-$koneksi = mysqli_connect("localhost", "root", "", "ujikom_12rpl2_chika");
+$host = "localhost";
+$user = "root";
+$pass = "";
+$db   = "ujikom_12rpl2_chika.sql";
 
+// Buat koneksi
+$koneksi = mysqli_connect($host, $user, $pass, $db);
+
+// Cek koneksi
 if (!$koneksi) {
-    die("Koneksi gagal: " . mysqli_connect_error());
+    die("Koneksi database gagal: " . mysqli_connect_error());
 }
 ?>

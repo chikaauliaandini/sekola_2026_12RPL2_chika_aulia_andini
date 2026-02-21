@@ -35,7 +35,7 @@ body {
 }
 
 .container {
-    background: #fff;
+    background: #E5CEF8;
     padding: 40px 30px;
     border-radius: 15px;
     box-shadow: 0 10px 25px rgba(0,0,0,.2);
@@ -49,7 +49,7 @@ input[type=text] {
     padding:10px;
     margin-bottom:15px;
     border-radius:8px;
-    border:1px solid #ccc;
+    border:1px solid #F7F5FC;
 }
 
 button {

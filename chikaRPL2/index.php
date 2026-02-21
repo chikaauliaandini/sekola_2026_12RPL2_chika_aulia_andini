@@ -131,9 +131,9 @@ a.button-link:hover {
 
     <?php if($_SESSION['role'] == "admin"){ ?>
         <p>Menu Admin:</p>
-            <a href="?datasiswa.php" class="button-link">data siswa</a>
+        <a href="datasiswa.php" class="button-link">data siswa</a>
         <a href="datasiswa-pengaduan.php" class="button-link">Datasiswa Pengaduan</a>
-
+        <a href="tampildata.php" class="button-link">tampildata</a>
         <a href="cari-pengaduan.php" class="button-link">cari Data Pengaduan</a>
     <?php } ?>
 

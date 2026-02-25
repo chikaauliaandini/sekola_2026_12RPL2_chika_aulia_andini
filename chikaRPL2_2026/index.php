@@ -42,7 +42,7 @@ if(isset($_GET['logout'])){
 <style>
 body{
     font-family: Arial, sans-serif;
-    background: linear-gradient(to right,#ffb6d9,#ffffff);
+    background: linear-gradient(to right,#e6e0f8,#ffffff);
     display:flex;
     justify-content:center;
     align-items:center;
@@ -61,20 +61,26 @@ input{
     width:100%;
     padding:10px;
     margin:8px 0;
+    border-radius:5px;
+    border:1px solid #ccc;
 }
 button{
     padding:10px;
     width:100%;
-    background:#ff69b4;
+    background:#8e7cc3; /* ungu kalem */
     color:white;
     border:none;
     cursor:pointer;
     font-size:16px;
+    border-radius:5px;
+}
+button:hover{
+    background:#6f5bb3; /* ungu lebih gelap */
 }
 a.button-link{
     display:block;
     padding:10px;
-    background:#ff69b4;
+    background:#8e7cc3; /* ungu kalem */
     color:#fff;
     text-decoration:none;
     border-radius:5px;
@@ -82,10 +88,13 @@ a.button-link{
     font-weight:bold;
 }
 a.button-link:hover{
-    background:#e04897;
+    background:#6f5bb3;
 }
 .logout{
     background:#e74c3c !important;
+}
+.logout:hover{
+    background:#c0392b !important;
 }
 .error{
     color:red;
@@ -120,7 +129,7 @@ a.button-link:hover{
     <?php if($_SESSION['role'] == "admin"){ ?>
         <p><b>Menu Admin:</b></p>
         <a href="datasiswa-pengaduan.php" class="button-link">Data Pengaduan</a>
-        <a href="editpassword-pengaduan.php" class="button-link">edit password</a>
+        <a href="editpassword-pengaduan.php" class="button-link">Edit Password</a>
         <a href="tampildata.php" class="button-link">Tampil Data</a>
         <a href="datasiswa.php" class="button-link">Data Siswa</a>
         <a href="cari-pengaduan.php" class="button-link">Cari Pengaduan</a>

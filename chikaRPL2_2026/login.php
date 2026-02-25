@@ -11,7 +11,7 @@ if(!$conn){
 ========================= */
 if(isset($_GET['logout'])){
     session_destroy();
-    header("Location: index.php");
+    header("Location: login-index.php");
     exit;
 }
 
@@ -89,7 +89,7 @@ button{
     border-radius:5px;
     cursor:pointer;
 }
-.login-btn{ background:#28a745; color:white; }
+.login-btn{ background:#988E70; color:white; }
 .update-btn{ background:#007bff; color:white; }
 .logout-btn{ background:#dc3545; color:white; margin-top:10px; }
 </style>

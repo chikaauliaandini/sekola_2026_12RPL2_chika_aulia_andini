@@ -57,7 +57,7 @@ button {
     padding:12px;
     border:none;
     border-radius:8px;
-    background:#f39c12;
+    background:#8e7cc3;
     color:#fff;
     font-size:16px;
 }
@@ -69,7 +69,7 @@ table {
 }
 
 th, td {
-    border:1px solid #ccc;
+    border:1px solid #cccccc;
     padding:10px;
     text-align:center;
 }

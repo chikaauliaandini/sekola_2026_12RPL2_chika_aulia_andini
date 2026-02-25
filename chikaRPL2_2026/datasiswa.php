@@ -110,7 +110,7 @@ $query = mysqli_query($koneksi, "
         button, a.btn {
             display: inline-block;
             padding: 10px 20px;
-            background: pink;
+            background: #8e7cc3;
             border: none;
             color: black;
             cursor: pointer;
@@ -124,7 +124,7 @@ $query = mysqli_query($koneksi, "
             color: white;
         }
         .btn-logout {
-            background: #e74c3c;
+            background: #8e7cc3;
             color: white;
         }
         .btn-logout:hover {

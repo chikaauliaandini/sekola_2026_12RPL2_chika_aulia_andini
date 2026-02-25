@@ -27,7 +27,7 @@ if (isset($_GET['cari'])) {
 <style>
 body {
     font-family: 'Segoe UI', sans-serif;
-    background: linear-gradient(to right, #c7c1e0, #f3b9cb);
+    background: linear-gradient(to right,#CCECFF,#ffffff);
     display: flex;
     justify-content: center;
     padding: 50px 0;
@@ -57,7 +57,7 @@ button {
     padding:12px;
     border:none;
     border-radius:8px;
-    background:#8e7cc3;
+    background:#99DDFF;
     color:#fff;
     font-size:16px;
 }

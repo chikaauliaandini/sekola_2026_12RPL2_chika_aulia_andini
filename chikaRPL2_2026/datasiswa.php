@@ -120,11 +120,11 @@ $query = mysqli_query($koneksi, "
             margin-right: 10px;
         }
         button:hover, a.btn:hover {
-            background: #ff69b4;
+            background:#99DDFF;
             color: white;
         }
         .btn-logout {
-            background: #8e7cc3;
+            background:#99DDFF;
             color: white;
         }
         .btn-logout:hover {

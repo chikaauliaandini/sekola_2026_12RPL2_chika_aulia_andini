@@ -42,7 +42,7 @@ if(isset($_GET['logout'])){
 <style>
 body{
     font-family: Arial, sans-serif;
-    background: linear-gradient(to right,#e6e0f8,#ffffff);
+    background: linear-gradient(to right,#CCECFF,#ffffff);
     display:flex;
     justify-content:center;
     align-items:center;
@@ -67,7 +67,7 @@ input{
 button{
     padding:10px;
     width:100%;
-    background:#8e7cc3; /* ungu kalem */
+    background:#99DDFF;    
     color:white;
     border:none;
     cursor:pointer;
@@ -75,12 +75,12 @@ button{
     border-radius:5px;
 }
 button:hover{
-    background:#6f5bb3; /* ungu lebih gelap */
+    background:#99DDFF;
 }
 a.button-link{
     display:block;
     padding:10px;
-    background:#8e7cc3; /* ungu kalem */
+    background:#99DDFF;
     color:#fff;
     text-decoration:none;
     border-radius:5px;
@@ -88,13 +88,13 @@ a.button-link{
     font-weight:bold;
 }
 a.button-link:hover{
-    background:#6f5bb3;
+    background:#CCFFFC;
 }
 .logout{
-    background:#e74c3c !important;
+    background:#66D4FF !important;
 }
 .logout:hover{
-    background:#c0392b !important;
+    background:#0080FF !important;
 }
 .error{
     color:red;

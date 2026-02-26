@@ -21,6 +21,7 @@ if(isset($_POST['login'])){
         $_SESSION['id']       = $data['id'];
         $_SESSION['username'] = $data['username'];
         $_SESSION['role']     = $data['role'];
+        $_SESSION['nis']     = $data['nis'];    
     }else{
         $error = "Username atau Password salah!";
     }
@@ -42,7 +43,7 @@ if(isset($_GET['logout'])){
 <style>
 body{
     font-family: Arial, sans-serif;
-    background: linear-gradient(to right,#CCECFF,#ffffff);
+    background: linear-gradient(to right,#CFBAF0,#ffffff);
     display:flex;
     justify-content:center;
     align-items:center;
@@ -61,26 +62,20 @@ input{
     width:100%;
     padding:10px;
     margin:8px 0;
-    border-radius:5px;
-    border:1px solid #ccc;
 }
 button{
     padding:10px;
     width:100%;
-    background:#99DDFF;    
+    background:#EAC1FF;
     color:white;
     border:none;
     cursor:pointer;
     font-size:16px;
-    border-radius:5px;
-}
-button:hover{
-    background:#99DDFF;
 }
 a.button-link{
     display:block;
     padding:10px;
-    background:#99DDFF;
+    background:#EAC1FF;
     color:#fff;
     text-decoration:none;
     border-radius:5px;
@@ -88,13 +83,10 @@ a.button-link{
     font-weight:bold;
 }
 a.button-link:hover{
-    background:#CCFFFC;
+    background:#D4B5FF;
 }
 .logout{
-    background:#66D4FF !important;
-}
-.logout:hover{
-    background:#0080FF !important;
+    background:#BBA9FF !important;
 }
 .error{
     color:red;
@@ -129,7 +121,7 @@ a.button-link:hover{
     <?php if($_SESSION['role'] == "admin"){ ?>
         <p><b>Menu Admin:</b></p>
         <a href="datasiswa-pengaduan.php" class="button-link">Data Pengaduan</a>
-        <a href="editpassword-pengaduan.php" class="button-link">Edit Password</a>
+        <a href="editpassword-pengaduan.php" class="button-link">edit password</a>
         <a href="tampildata.php" class="button-link">Tampil Data</a>
         <a href="datasiswa.php" class="button-link">Data Siswa</a>
         <a href="cari-pengaduan.php" class="button-link">Cari Pengaduan</a>
@@ -141,7 +133,6 @@ a.button-link:hover{
         <a href="datasiswa-pengaduan.php" class="button-link">Data Pengaduan</a>
         <a href="cari-pengaduan.php" class="button-link">Cari Pengaduan Saya</a>
     <?php } ?>
-
     <a href="?logout=true" class="button-link logout">Logout</a>
 
 <?php } ?>

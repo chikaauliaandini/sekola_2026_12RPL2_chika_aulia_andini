@@ -11,7 +11,7 @@ if(!$conn){
 ========================= */
 if(isset($_GET['logout'])){
     session_destroy();
-    header("Location: login-index.php");
+    header("Location: index.php");
     exit;
 }
 
@@ -29,6 +29,7 @@ if(isset($_POST['login'])){
     if($data && password_verify($password,$data['password'])){
         $_SESSION['id'] = $data['id'];
         $_SESSION['username'] = $data['username'];
+        $_SESSION['nis'] = $data['nis'];
     }else{
         echo "<script>alert('Login gagal!');</script>";
     }
@@ -89,7 +90,7 @@ button{
     border-radius:5px;
     cursor:pointer;
 }
-.login-btn{ background:#988E70; color:white; }
+.login-btn{ background:#28a745; color:white; }
 .update-btn{ background:#007bff; color:white; }
 .logout-btn{ background:#dc3545; color:white; margin-top:10px; }
 </style>

@@ -110,7 +110,7 @@ $query = mysqli_query($koneksi, "
         button, a.btn {
             display: inline-block;
             padding: 10px 20px;
-            background: #8e7cc3;
+            background: #a6cbd1;
             border: none;
             color: black;
             cursor: pointer;

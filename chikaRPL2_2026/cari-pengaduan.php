@@ -162,7 +162,7 @@ th {
 
     <td>
         <a class="detail-btn"
-           href="detail_pengaduan.php?id=<?= $h['id_pelaporan']; ?>">
+           href="detail-pengaduan.php?id=<?= $h['id_pelaporan']; ?>">
            Detail
         </a>
     </td>

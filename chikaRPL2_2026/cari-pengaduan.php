@@ -26,8 +26,8 @@ if (isset($_GET['cari'])) {
 
 <style>
 body {
-    font-family: 'Segoe UI', sans-serif;
-    background: linear-gradient(to right,#CCECFF,#ffffff);
+    font-family: 'Segoe UI', sans-serif;,
+    background: linear-gradient(to right,#CCECFF#ffffff);
     display: flex;
     justify-content: center;
     padding: 50px 0;

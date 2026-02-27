@@ -98,7 +98,7 @@ $nis = $_SESSION['nis'];
 
 <h1>Forum Pengaduan Sarana Sekolah</h1>
 
-<form action="proses_pengaduan.php" method="POST">
+<form action="proses-pengaduan.php" method="POST">
 
     <div>
         <label>NIS</label><br />

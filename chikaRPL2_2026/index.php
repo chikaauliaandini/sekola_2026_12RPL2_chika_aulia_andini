@@ -43,7 +43,7 @@ if(isset($_GET['logout'])){
 <style>
 body{
     font-family: Arial, sans-serif;
-    background: linear-gradient(to right,#CFBAF0,#ffffff);
+    background: linear-gradient(to right,#CCECFF,#ffffff);
     display:flex;
     justify-content:center;
     align-items:center;
@@ -66,7 +66,7 @@ input{
 button{
     padding:10px;
     width:100%;
-    background:#EAC1FF;
+    background:#99DDFF;
     color:white;
     border:none;
     cursor:pointer;
@@ -75,7 +75,7 @@ button{
 a.button-link{
     display:block;
     padding:10px;
-    background:#EAC1FF;
+    background:#99DDFF;
     color:#fff;
     text-decoration:none;
     border-radius:5px;
@@ -83,10 +83,10 @@ a.button-link{
     font-weight:bold;
 }
 a.button-link:hover{
-    background:#D4B5FF;
+    background:#CCECFF;
 }
 .logout{
-    background:#BBA9FF !important;
+        background:#99DDFF; !important;
 }
 .error{
     color:red;

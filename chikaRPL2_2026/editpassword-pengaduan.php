@@ -26,7 +26,7 @@ if(isset($_POST['update'])){
 
     $_SESSION['username'] = $username;
 
-    echo "<script>alert('Data berhasil diupdate!'); window.location='editpassword_pengaduan.php';</script>";
+    echo "<script>alert('Data berhasil diupdate!'); window.location='editpassword-pengaduan.php';</script>";
     exit;
 }
 ?>
@@ -34,13 +34,62 @@ if(isset($_POST['update'])){
 <!DOCTYPE html>
 <html>
 <head>
-<title>Edit Password</title>
+<title>Edit Username & Password</title>
+
 <style>
+body{
+    font-family: 'Segoe UI', Arial, sans-serif;
+    background: linear-gradient(to right,#CCECFF,#ffffff);
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    height:100vh;
+    margin:0;
+}
+
+.box{
+    width:380px;
+    background:white;
+    padding:30px;
+    border-radius:12px;
+    box-shadow:0 10px 25px rgba(0,0,0,0.2);
+}
+
+h2{
+    text-align:center;
+    margin-bottom:20px;
+    color:#333;
+}
+
+label{
+    font-size:14px;
+    font-weight:bold;
+    color:#555;
+}
+
+input{
+    width:100%;
+    padding:10px;
+    margin-top:5px;
+    margin-bottom:15px;
+    border:1px solid #ccc;
+    border-radius:6px;
+    outline:none;
+    transition:0.3s;
+}
+
+input:focus{
+    border-color:#3498db;
+    box-shadow:0 0 5px rgba(52,152,219,0.5);
+}
+
 button{
-    padding:8px 15px;
+    padding:10px 15px;
     border:none;
-    border-radius:5px;
+    border-radius:6px;
     cursor:pointer;
+    font-weight:bold;
+    transition:0.3s;
 }
 
 .btn-update{
@@ -48,29 +97,45 @@ button{
     color:white;
 }
 
+.btn-update:hover{
+    background-color:#2980b9;
+}
+
 .btn-kembali{
     background-color:#7f8c8d;
     color:white;
     text-decoration:none;
-    padding:8px 15px;
-    border-radius:5px;
+    padding:10px 15px;
+    border-radius:6px;
+    margin-left:10px;
+}
+
+.btn-kembali:hover{
+    background-color:#636e72;
 }
 </style>
+
 </head>
 <body>
+
+<div class="box">
 
 <h2>Edit Username & Password</h2>
 
 <form method="POST">
-    <label>Username</label><br>
-    <input type="text" name="username" value="<?php echo $user['username']; ?>" required><br><br>
 
-    <label>Password Baru (kosongkan jika tidak diganti)</label><br>
-    <input type="password" name="password"><br><br>
+<label>Username</label>
+<input type="text" name="username" value="<?php echo $user['username']; ?>" required>
 
-    <button type="submit" name="update" class="btn-update">Update</button>
-    <a href="index.php" class="btn-kembali">Kembali</a>
+<label>Password Baru (kosongkan jika tidak diganti)</label>
+<input type="password" name="password">
+
+<button type="submit" name="update" class="btn-update">Update</button>
+<a href="index.php" class="btn-kembali">Kembali</a>
+
 </form>
+
+</div>
 
 </body>
 </html>

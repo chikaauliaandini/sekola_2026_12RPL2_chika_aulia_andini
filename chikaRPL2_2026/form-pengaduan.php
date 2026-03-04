@@ -10,89 +10,103 @@ if (!isset($_SESSION['nis'])) {
 // Ambil NIS dari session
 $nis = $_SESSION['nis'];
 ?>
+
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Halaman Pengaduan</title>
-    <style>
-        * {
-            box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, sans-serif;
-        }
+<title>Forum Pengaduan Sarana Sekolah</title>
 
-        body {
-            background: linear-gradient(to right, #e2e2e2, #c894b4);
-            min-height: 100vh;
-            margin: 0;
-            padding: 40px;
-        }
+<style>
+* {
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, sans-serif;
+}
 
-        h1 {
-            text-align: center;
-            color: #2c3e50;
-            margin-bottom: 30px;
-        }
+body {
+    background: linear-gradient(to right, #dbeafe, #bfdbfe);
+    min-height: 100vh;
+    margin: 0;
+    padding: 40px;
+}
 
-        form {
-            background: #fff;
-            max-width: 500px;
-            margin: auto;
-            padding: 30px;
-            border-radius: 15px;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
-        }
+h1 {
+    text-align: center;
+    color: #1e3a8a;
+    margin-bottom: 30px;
+}
 
-        form div {
-            margin-bottom: 20px;
-        }
+form {
+    background: #ffffff;
+    max-width: 500px;
+    margin: auto;
+    padding: 30px;
+    border-radius: 18px;
+    box-shadow: 0 10px 25px rgba(30, 58, 138, 0.15);
+    border: 1px solid #e0f2fe;
+}
 
-        label {
-            font-weight: bold;
-            color: #34495e;
-        }
+form div {
+    margin-bottom: 20px;
+}
 
-        input[type="text"],
-        select,
-        textarea {
-            width: 100%;
-            padding: 10px;
-            margin-top: 6px;
-            border-radius: 8px;
-            border: 1px solid #ccc;
-            font-size: 14px;
-        }
+label {
+    font-weight: 600;
+    color: #1e40af;
+}
 
-        textarea {
-            min-height: 100px;
-            resize: vertical;
-        }
+input[type="text"],
+select,
+textarea {
+    width: 100%;
+    padding: 10px;
+    margin-top: 6px;
+    border-radius: 10px;
+    border: 1px solid #93c5fd;
+    font-size: 14px;
+    transition: 0.3s ease;
+}
 
-        button {
-            padding: 10px 18px;
-            border: none;
-            border-radius: 8px;
-            font-size: 14px;
-            cursor: pointer;
-            margin-right: 10px;
-            color: white;
-        }
+input:focus,
+select:focus,
+textarea:focus {
+    outline: none;
+    border-color: #2563eb;
+    box-shadow: 0 0 6px rgba(37, 99, 235, 0.3);
+}
 
-        .btn-kembali {
-            background-color: #7f8c8d;
-        }
+textarea {
+    min-height: 100px;
+    resize: vertical;
+}
 
-        .btn-kirim {
-            background-color: #3498db;
-        }
+button {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 10px;
+    font-size: 14px;
+    cursor: pointer;
+    margin-right: 10px;
+    color: white;
+    transition: 0.3s ease;
+}
 
-        .btn-kembali:hover {
-            background-color: #636e72;
-        }
+.btn-kembali {
+    background-color: #60a5fa;
+}
 
-        .btn-kirim:hover {
-            background-color: #2980b9;
-        }
-    </style>
+.btn-kembali:hover {
+    background-color: #3b82f6;
+}
+
+.btn-kirim {
+    background-color: #2563eb;
+}
+
+.btn-kirim:hover {
+    background-color: #1d4ed8;
+}
+</style>
+
 </head>
 <body>
 
@@ -101,13 +115,13 @@ $nis = $_SESSION['nis'];
 <form action="proses-pengaduan.php" method="POST">
 
     <div>
-        <label>NIS</label><br />
+        <label>NIS</label>
         <input type="text" name="nis" 
-        value="<?php echo $nis; ?>" readonly />
+        value="<?php echo htmlspecialchars($nis); ?>" readonly />
     </div>
 
     <div>
-        <label>Kategori</label><br>
+        <label>Kategori</label>
         <select name="kategori" required>
             <option value="">-- Pilih Kategori --</option>
             <option value="1">Lingkungan</option>
@@ -116,12 +130,12 @@ $nis = $_SESSION['nis'];
     </div>
 
     <div>
-        <label>Lokasi</label><br />
+        <label>Lokasi</label>
         <input type="text" name="lokasi" required />
     </div>
 
     <div>
-        <label>Keterangan</label><br />
+        <label>Keterangan</label>
         <textarea name="keterangan" required></textarea>
     </div>
 

@@ -25,9 +25,13 @@ if (isset($_GET['cari'])) {
 <title>Cari Pengaduan</title>
 
 <style>
+* {
+    box-sizing: border-box;
+    font-family: 'Segoe UI', sans-serif;
+}
+
 body {
-    font-family: 'Segoe UI', sans-serif;,
-    background: linear-gradient(to right,#CCECFF#ffffff);
+    background: linear-gradient(to right, #dbeafe, #bfdbfe);
     display: flex;
     justify-content: center;
     padding: 50px 0;
@@ -35,72 +39,110 @@ body {
 }
 
 .container {
-    background: #fff;
+    background: #ffffff;
     padding: 40px 30px;
-    border-radius: 15px;
-    box-shadow: 0 10px 25px rgba(0,0,0,.2);
+    border-radius: 18px;
+    box-shadow: 0 15px 30px rgba(30, 58, 138, 0.15);
     width: 950px;
 }
 
-h2 { text-align:center; color:#2c3e50; }
+h2 {
+    text-align: center;
+    color: #1e3a8a;
+    margin-bottom: 20px;
+}
 
 input[type=text] {
-    width:100%;
-    padding:10px;
-    margin-bottom:15px;
-    border-radius:8px;
-    border:1px solid #ccc;
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 15px;
+    border-radius: 10px;
+    border: 1px solid #93c5fd;
+    font-size: 14px;
+}
+
+input[type=text]:focus {
+    outline: none;
+    border-color: #2563eb;
+    box-shadow: 0 0 6px rgba(37, 99, 235, 0.3);
 }
 
 button {
-    width:100%;
-    padding:12px;
-    border:none;
-    border-radius:8px;
-    background:#99DDFF;
-    color:#fff;
-    font-size:16px;
+    width: 100%;
+    padding: 12px;
+    border: none;
+    border-radius: 10px;
+    background: #2563eb;
+    color: #fff;
+    font-size: 15px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+button:hover {
+    background: #1d4ed8;
 }
 
 table {
-    width:100%;
-    border-collapse:collapse;
-    margin-top:20px;
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 25px;
 }
 
 th, td {
-    border:1px solid #cccccc;
-    padding:10px;
-    text-align:center;
+    padding: 10px;
+    text-align: center;
+    font-size: 13px;
 }
 
 th {
-    background:#3498db;
-    color:white;
+    background: #3b82f6;
+    color: white;
+}
+
+td {
+    border-bottom: 1px solid #e5e7eb;
+}
+
+tr:hover {
+    background: #eff6ff;
 }
 
 .detail-btn {
-    background:#2ecc71;
-    color:white;
-    padding:6px 12px;
-    border-radius:6px;
-    text-decoration:none;
+    background: #60a5fa;
+    color: white;
+    padding: 6px 12px;
+    border-radius: 8px;
+    text-decoration: none;
+    font-size: 12px;
+    transition: 0.3s;
+}
+
+.detail-btn:hover {
+    background: #3b82f6;
 }
 
 .status-select {
-    padding:6px;
-    border-radius:6px;
+    padding: 6px;
+    border-radius: 8px;
+    border: 1px solid #93c5fd;
+    background: #f0f9ff;
 }
 
 .back-btn {
-    display:block;
-    margin-top:25px;
-    text-align:center;
-    background:#95a5a6;
-    color:white;
-    padding:10px;
-    border-radius:8px;
-    text-decoration:none;
+    display: block;
+    margin-top: 30px;
+    text-align: center;
+    background: #2563eb;
+    color: white;
+    padding: 12px;
+    border-radius: 10px;
+    text-decoration: none;
+    transition: 0.3s;
+}
+
+.back-btn:hover {
+    background: #1d4ed8;
 }
 </style>
 </head>
@@ -117,7 +159,7 @@ th {
 </form>
 
 <?php if (isset($_GET['cari'])) { ?>
-<h3 style="margin-top:20px;">Hasil Pencarian</h3>
+<h3 style="margin-top:25px; color:#1e3a8a;">Hasil Pencarian</h3>
 
 <?php if ($hasil) { ?>
 <table>
@@ -135,7 +177,6 @@ th {
 <tr>
     <td><?= $no++; ?></td>
 
-    <!-- TANGGAL -->
     <td><?= date('d-m-Y', strtotime($h['tanggal'])); ?></td>
 
     <td><?= htmlspecialchars($h['nis']); ?></td>
@@ -171,7 +212,7 @@ th {
 
 </table>
 <?php } else { ?>
-<p style="color:red;text-align:center;">Data tidak ditemukan</p>
+<p style="color:red;text-align:center;margin-top:20px;">Data tidak ditemukan</p>
 <?php } } ?>
 
 <a href="index.php" class="back-btn">← Kembali</a>

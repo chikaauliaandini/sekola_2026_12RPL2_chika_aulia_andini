@@ -2,18 +2,11 @@
 session_start();
 include 'koneksi.php';
 
-/* 
-Contoh set role (biasanya dari login):
-$_SESSION['role'] = 'admin';
-$_SESSION['role'] = 'siswa';
-*/
-
 if (!isset($_SESSION['role'])) {
     echo "Akses ditolak!";
     exit;
 }
 
-// CEK ID PELAPORAN
 if (!isset($_GET['id'])) {
     echo "ID pengaduan tidak ditemukan!";
     exit;
@@ -22,8 +15,8 @@ if (!isset($_GET['id'])) {
 $id = $_GET['id'];
 $role = $_SESSION['role'];
 
-// PROSES UPDATE DATA HANYA UNTUK ADMIN
 if ($role == 'admin' && isset($_POST['simpan'])) {
+
     $status = mysqli_real_escape_string($koneksi, $_POST['status']);
     $feedback = mysqli_real_escape_string($koneksi, $_POST['feedback']);
 
@@ -33,11 +26,8 @@ if ($role == 'admin' && isset($_POST['simpan'])) {
         WHERE id_pelaporan='$id'
     ");
 
-    
     if ($update) {
-        
-        // header("location:admin.php");
-        header("Location: datasiswa-pengaduan.php");
+        header("Location: tampildata.php");
         exit;
     } else {
         echo "Gagal menyimpan data!";
@@ -45,7 +35,6 @@ if ($role == 'admin' && isset($_POST['simpan'])) {
     }
 }
 
-// AMBIL DATA PENGADUAN DENGAN JOIN KATEGORI
 $query = mysqli_query($koneksi, "
     SELECT input_aspirasi.*, kategori.ket_kategori
     FROM input_aspirasi
@@ -64,78 +53,161 @@ if (!$data) {
 <!DOCTYPE html>
 <html lang="id">
 <head>
-    <meta charset="UTF-8">
-    <title>Detail Pengaduan</title>
-    <style>
-        body { font-family: Arial, sans-serif; padding: 20px; max-width: 700px; margin: auto; }
-        table { border-collapse: collapse; width: 100%; }
-        td { padding: 10px; border: 1px solid #ccc; vertical-align: top; }
-        b { color: #333; }
-        select, textarea { width: 100%; padding: 8px; font-size: 14px; }
-        button { padding: 10px 20px; background: #2ecc71; color: white; border: none; cursor: pointer; border-radius: 5px; }
-        button:hover { background: #27ae60; }
-        a { display: inline-block; margin-top: 15px; text-decoration: none; color: #2980b9; }
-        a:hover { text-decoration: underline; }
-    </style>
+<meta charset="UTF-8">
+<title>Detail Pengaduan</title>
+
+<style>
+body {
+    font-family: 'Segoe UI', sans-serif;
+    background: linear-gradient(to right, #ccecff, #ffffff);
+    margin: 0;
+    padding: 50px 0;
+    display: flex;
+    justify-content: center;
+}
+
+.container {
+    background: #ffffff;
+    width: 95%;
+    max-width: 750px;
+    padding: 35px;
+    border-radius: 15px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+}
+
+h2 {
+    text-align: center;
+    color: #2c3e50;
+    margin-bottom: 10px;
+}
+
+.role {
+    text-align: center;
+    color: #3498db;
+    margin-bottom: 25px;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+td {
+    padding: 12px;
+    border: 1px solid #ddd;
+    vertical-align: top;
+}
+
+td b {
+    color: #2c3e50;
+}
+
+select, textarea {
+    width: 100%;
+    padding: 8px;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+    font-size: 14px;
+}
+
+textarea {
+    resize: none;
+}
+
+button {
+    background-color: #66c2ff;
+    color: white;
+    border: none;
+    padding: 10px 18px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+button:hover {
+    background-color: #3498db;
+}
+
+.back-link {
+    display: inline-block;
+    margin-top: 20px;
+    text-decoration: none;
+    background-color: #95a5a6;
+    color: white;
+    padding: 8px 15px;
+    border-radius: 6px;
+}
+
+.back-link:hover {
+    background-color: #7f8c8d;
+}
+</style>
+
 </head>
 <body>
 
+<div class="container">
+
 <h2>Detail Pengaduan</h2>
-<p><b>Role:</b> <?= htmlspecialchars(ucfirst($role)) ?></p>
+<p class="role"><b>Role:</b> <?= htmlspecialchars(ucfirst($role)) ?></p>
 
-<form method="POST" action="">
+<form method="POST">
+
 <table>
-    <tr>
-        <td><b>ID Pengaduan</b></td>
-        <td><?= htmlspecialchars($data['id_pelaporan']) ?></td>
-    </tr>
-    <tr>
-        <td><b>Kategori</b></td>
-        <td><?= htmlspecialchars($data['ket_kategori'] ?? '-') ?></td>
-    </tr>
-    <tr>
-        <td><b>Lokasi</b></td>
-        <td><?= htmlspecialchars($data['lokasi'] ?? '-') ?></td>
-    </tr>
-    <tr>
-        <td><b>Keterangan</b></td>
-        <td><?= nl2br(htmlspecialchars($data['ket'] ?? '-')) ?></td>
-    </tr>
+<tr>
+    <td><b>ID Pengaduan</b></td>
+    <td><?= htmlspecialchars($data['id_pelaporan']) ?></td>
+</tr>
+<tr>
+    <td><b>Kategori</b></td>
+    <td><?= htmlspecialchars($data['ket_kategori'] ?? '-') ?></td>
+</tr>
+<tr>
+    <td><b>Lokasi</b></td>
+    <td><?= htmlspecialchars($data['lokasi'] ?? '-') ?></td>
+</tr>
+<tr>
+    <td><b>Keterangan</b></td>
+    <td><?= nl2br(htmlspecialchars($data['ket'] ?? '-')) ?></td>
+</tr>
 
-    <tr>
-        <td><b>Status</b></td>
-        <td>
-            <?php if ($role == 'admin'): ?>
-                <select name="status" required>
-                    <option value="menunggu" <?= ($data['status']=='menunggu') ? 'selected' : '' ?>>Menunggu</option>
-                    <option value="proses" <?= ($data['status']=='proses') ? 'selected' : '' ?>>Proses</option>
-                    <option value="selesai" <?= ($data['status']=='selesai') ? 'selected' : '' ?>>Selesai</option>
-                </select>
-            <?php else: ?>
-                <?= htmlspecialchars(ucfirst($data['status'] ?? '-')) ?>
-            <?php endif; ?>
-        </td>
-    </tr>
+<tr>
+    <td><b>Status</b></td>
+    <td>
+        <?php if ($role == 'admin'): ?>
+            <select name="status" required>
+                <option value="menunggu" <?= ($data['status']=='menunggu') ? 'selected' : '' ?>>Menunggu</option>
+                <option value="proses" <?= ($data['status']=='proses') ? 'selected' : '' ?>>Proses</option>
+                <option value="selesai" <?= ($data['status']=='selesai') ? 'selected' : '' ?>>Selesai</option>
+            </select>
+        <?php else: ?>
+            <?= htmlspecialchars(ucfirst($data['status'] ?? '-')) ?>
+        <?php endif; ?>
+    </td>
+</tr>
 
-    <?php if ($role == 'admin'): ?>
-    <tr>
-        <td><b>Feedback Admin</b></td>
-        <td>
-            <textarea name="feedback" rows="5"><?= htmlspecialchars($data['feedback'] ?? '') ?></textarea>
-        </td>
-    </tr>
-    <?php endif; ?>
+<?php if ($role == 'admin'): ?>
+<tr>
+    <td><b>Feedback Admin</b></td>
+    <td>
+        <textarea name="feedback" rows="5"><?= htmlspecialchars($data['feedback'] ?? '') ?></textarea>
+    </td>
+</tr>
+<?php endif; ?>
+
 </table>
 
 <br>
 
 <?php if ($role == 'admin'): ?>
-    <button type="submit" name="simpan">Simpan Perubahan</button>
+<button type="submit" name="simpan">Simpan Perubahan</button>
 <?php endif; ?>
 
 </form>
 
-<a href="index.php">← Kembali</a>
+<a href="tampildata.php" class="back-link">← Kembali</a>
+
+</div>
 
 </body>
 </html>

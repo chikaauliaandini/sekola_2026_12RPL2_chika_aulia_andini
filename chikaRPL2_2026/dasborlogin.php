@@ -16,7 +16,7 @@ session_start();
 body{
     margin:0;
     font-family: Arial;
-    background: linear-gradient(to right,#ffbece,#ffffff);
+    background: linear-gradient(to right,#CCECFF,#ffffff);
     height:100vh;
     display:flex;
     justify-content:center;
@@ -34,7 +34,7 @@ body{
     display:block;
     margin:20px auto 0;
     padding:12px;
-    background:#ffb5da;
+    background-color: #86a9de;
     color:white;
     text-decoration:none;
     border-radius:6px;
@@ -44,7 +44,7 @@ body{
     text-align: center;
 }
 .btn:hover{
-    background:#ff91c8;
+    background-color: #99DDFF;
 }
 </style>
 </head>

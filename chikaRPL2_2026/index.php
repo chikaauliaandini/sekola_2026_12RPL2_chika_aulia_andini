@@ -66,7 +66,7 @@ input{
 button{
     padding:10px;
     width:100%;
-    background:#99DDFF;
+    background-color: #99DDFF;
     color:white;
     border:none;
     cursor:pointer;

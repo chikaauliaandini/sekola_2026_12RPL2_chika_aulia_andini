@@ -1,7 +1,7 @@
 <?php
 session_start();
 
-// CEK LOGIN
+// ================= CEK LOGIN =================
 if (!isset($_SESSION['nis'])) {
     header("Location: index.php");
     exit;
@@ -17,133 +17,157 @@ $nis = $_SESSION['nis'];
 <title>Forum Pengaduan Sarana Sekolah</title>
 
 <style>
-* {
-    box-sizing: border-box;
-    font-family: 'Segoe UI', Tahoma, sans-serif;
+
+*{
+box-sizing:border-box;
+font-family:'Poppins', sans-serif;
 }
 
-body {
-    background: linear-gradient(to right, #dbeafe, #bfdbfe);
-    min-height: 100vh;
-    margin: 0;
-    padding: 40px;
+/* BODY */
+body{
+background:linear-gradient(to right,#cce7ff,#e6f3ff);
+min-height:100vh;
+margin:0;
+padding:40px;
 }
 
-h1 {
-    text-align: center;
-    color: #1e3a8a;
-    margin-bottom: 30px;
+/* JUDUL */
+h1{
+text-align:center;
+color:#2563eb;
+margin-bottom:25px;
 }
 
-form {
-    background: #ffffff;
-    max-width: 500px;
-    margin: auto;
-    padding: 30px;
-    border-radius: 18px;
-    box-shadow: 0 10px 25px rgba(30, 58, 138, 0.15);
-    border: 1px solid #e0f2fe;
+/* FLOWER */
+.flower{
+text-align:center;
+font-size:26px;
+margin-bottom:10px;
 }
 
-form div {
-    margin-bottom: 20px;
+/* FORM BOX */
+form{
+background:white;
+max-width:500px;
+margin:auto;
+padding:30px;
+border-radius:18px;
+box-shadow:0 10px 25px rgba(0,0,0,0.1);
+border:2px solid #93c5fd;
 }
 
-label {
-    font-weight: 600;
-    color: #1e40af;
+/* FORM GROUP */
+form div{
+margin-bottom:18px;
 }
 
+/* LABEL */
+label{
+font-weight:600;
+color:#1e40af;
+}
+
+/* INPUT */
 input[type="text"],
 select,
-textarea {
-    width: 100%;
-    padding: 10px;
-    margin-top: 6px;
-    border-radius: 10px;
-    border: 1px solid #93c5fd;
-    font-size: 14px;
-    transition: 0.3s ease;
+textarea{
+width:100%;
+padding:10px;
+margin-top:6px;
+border-radius:10px;
+border:1px solid #93c5fd;
+font-size:14px;
+transition:0.3s;
 }
 
+/* INPUT FOCUS */
 input:focus,
 select:focus,
-textarea:focus {
-    outline: none;
-    border-color: #2563eb;
-    box-shadow: 0 0 6px rgba(37, 99, 235, 0.3);
+textarea:focus{
+outline:none;
+border-color:#2563eb;
+box-shadow:0 0 6px rgba(37,99,235,0.3);
+background:#f0f9ff;
 }
 
-textarea {
-    min-height: 100px;
-    resize: vertical;
+textarea{
+min-height:100px;
+resize:vertical;
 }
 
-button {
-    padding: 10px 20px;
-    border: none;
-    border-radius: 10px;
-    font-size: 14px;
-    cursor: pointer;
-    margin-right: 10px;
-    color: white;
-    transition: 0.3s ease;
+/* BUTTON */
+button{
+padding:10px 20px;
+border:none;
+border-radius:10px;
+font-size:14px;
+cursor:pointer;
+margin-right:10px;
+color:white;
+transition:0.3s;
 }
 
-.btn-kembali {
-    background-color: #60a5fa;
+/* BUTTON KEMBALI */
+.btn-kembali{
+background:#93c5fd;
 }
 
-.btn-kembali:hover {
-    background-color: #3b82f6;
+.btn-kembali:hover{
+background:#60a5fa;
 }
 
-.btn-kirim {
-    background-color: #2563eb;
+/* BUTTON KIRIM */
+.btn-kirim{
+background:#3b82f6;
 }
 
-.btn-kirim:hover {
-    background-color: #1d4ed8;
+.btn-kirim:hover{
+background:#2563eb;
 }
+
 </style>
 
 </head>
 <body>
 
+<div class="flower">🌸🌼🌸</div>
+
 <h1>Forum Pengaduan Sarana Sekolah</h1>
 
 <form action="proses-pengaduan.php" method="POST">
 
-    <div>
-        <label>NIS</label>
-        <input type="text" name="nis" 
-        value="<?php echo htmlspecialchars($nis); ?>" readonly />
-    </div>
+<div>
+<label>NIS</label>
+<input type="text" name="nis"
+value="<?php echo htmlspecialchars($nis); ?>" readonly>
+</div>
 
-    <div>
-        <label>Kategori</label>
-        <select name="kategori" required>
-            <option value="">-- Pilih Kategori --</option>
-            <option value="1">Lingkungan</option>
-            <option value="2">Fasilitas</option>
-        </select>
-    </div>
+<div>
+<label>Kategori</label>
+<select name="kategori" required>
+<option value="">-- Pilih Kategori --</option>
+<option value="1">Lingkungan</option>
+<option value="2">Fasilitas</option>
+</select>
+</div>
 
-    <div>
-        <label>Lokasi</label>
-        <input type="text" name="lokasi" required />
-    </div>
+<div>
+<label>Lokasi</label>
+<input type="text" name="lokasi" required>
+</div>
 
-    <div>
-        <label>Keterangan</label>
-        <textarea name="keterangan" required></textarea>
-    </div>
+<div>
+<label>Keterangan</label>
+<textarea name="keterangan" required></textarea>
+</div>
 
-    <a href="index.php">
-        <button type="button" class="btn-kembali">Kembali</button>
-    </a>
+<a href="index.php">
+<button type="button" class="btn-kembali">Kembali 🌸</button>
+</a>
 
-    <button type="submit" class="btn-kirim">Kirim</button>
+<button type="submit" class="btn-kirim">Kirim 🌼</button>
+
+<div class="flower">🌼🌸🌼</div>
 
 </form>
 
